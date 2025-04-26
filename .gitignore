@@ -1,0 +1,51 @@
+# Ignore composer dependencies
+/vendor/
+
+# Ignore dotenv files (contain secrets)
+.env
+.env.*
+
+# Ignore PHPStorm and VSCode settings
+.idea/
+.vscode/
+
+# Ignore logs and temp files
+*.log
+*.tmp
+*.cache
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore PHPUnit test results
+.phpunit.result.cache
+
+# Ignore node_modules if you use frontend stuff
+/node_modules/
+
+# Ignore build and dist folders
+/build/
+/dist/
+
+# Ignore session files
+/sessions/
+
+# Ignore coverage reports
+/coverage/
+
+# Ignore user uploaded files if any
+/storage/
+uploads/
+
+# Ignore backup files
+*.bak
+*.old
+*.swp
+*.swo
+
+# Ignore autoloaded files
+composer.lock
+
+# Optional: ignore custom config files
+config/*.local.php
