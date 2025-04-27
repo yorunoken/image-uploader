@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->execute();
 
             $_SESSION["login_token"] = $loginToken;
-            header("Location: dashboard");
+            header("Location: /");
             exit();
         }
     }

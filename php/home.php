@@ -48,7 +48,6 @@ $isLoggedIn = loginTokenIsValid(isset($_SESSION["login_token"]) ? $_SESSION["log
             <p class="description">Welcome back, Yoru!<br />How are you doing today?</p>
 
             <div class="button-group">
-                <a class="button" href="dashboard">Dashboard</a>
                 <a class="button" href="upload">Upload Image</a>
                 <a class="button" href="gallery">View Gallery</a>
                 <a class="button" href="logout">Logout</a>

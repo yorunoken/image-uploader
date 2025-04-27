@@ -38,5 +38,5 @@ $_SESSION = [];
 session_destroy();
 
 // Redirect
-header("Location: index");
+header("Location: /");
 exit();
