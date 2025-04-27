@@ -48,7 +48,7 @@
             foreach ($images as $imageData) {
                 $imageId = $imageData["id"];
                 $imagePath = "images/$imageId." . $imageData["originalName"];
-                $imageName = htmlspecialchars($imageData["fileName"]);
+                $imageName = htmlspecialchars($imageData["fileTitle"]);
                 $imageUrl = "gallery?id=$imageId";
             ?>
                 <div class="gallery-item">

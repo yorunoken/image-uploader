@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS images (
     id int AUTO_INCREMENT,
-    file_name VARCHAR(255),
+    title VARCHAR(255),
     original_name VARCHAR(255),
     user_id INT DEFAULT NULL,
     upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
