@@ -47,5 +47,5 @@ uploads/
 # Ignore autoloaded files
 composer.lock
 
-# Optional: ignore custom config files
-config/*.local.php
+# Ignore images
+public/images/*
