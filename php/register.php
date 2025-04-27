@@ -47,25 +47,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     <div class="container">
-        <h1>Register</h1>
-
-        <?php if (!empty($message)): ?>
-            <p class="message"><?= htmlspecialchars($message); ?></p>
-        <?php endif; ?>
-
-        <form method="POST" action="register">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
-            <div class="bottom">
-                <a href="/" class="go-back">Go home</a>
-                <a href="login" class="go-back">Already have an account?</a>
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <button type="submit">Register</button>
-        </form>
+            <div class="terminal-title">user@imageuploader:~/register</div>
+        </div>
+
+        <div class="form-content">
+            <h1>Register</h1>
+
+            <?php if (!empty($message)): ?>
+                <p class="message"><?= htmlspecialchars($message); ?></p>
+            <?php endif; ?>
+
+            <form method="POST" action="register">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <div class="bottom">
+                    <a href="/" class="go-back">Go home</a>
+                    <a href="login" class="go-back">Already have an account?</a>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
     </div>
 </body>
 

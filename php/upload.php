@@ -59,40 +59,51 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["image"])) {
 
 <body>
     <div class="container">
-        <h1>Upload Image</h1>
-
-        <?php if (!empty($message)): ?>
-            <div class="message <?= $messageType ?>">
-                <?= htmlspecialchars($message) ?>
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        <?php endif; ?>
+            <div class="terminal-title">user@imageuploader:~/upload</div>
+        </div>
 
-        <form method="POST" action="upload" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="title">Image Title (optional)</label>
-                <input type="text" id="title" name="title" placeholder="Enter a title for your image">
-            </div>
+        <div class="upload-content">
+            <h1>Upload Image</h1>
 
-            <div class="form-group">
-                <label for="image">Select Image</label>
-                <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.gif" required>
-                <div class="file-specs">
-                    Maximum size: 5MB<br>
-                    Allowed types: JPG, JPEG, PNG, GIF
+            <?php if (!empty($message)): ?>
+                <div class="message <?= $messageType ?>">
+                    <?= htmlspecialchars($message) ?>
                 </div>
-            </div>
+            <?php endif; ?>
 
-            <div class="form-actions">
-                <a href="home" class="back-button">Cancel</a>
-                <button type="submit" class="upload-button">Upload Image</button>
-            </div>
-        </form>
+            <form method="POST" action="upload" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Image Title (optional)</label>
+                    <input type="text" id="title" name="title" placeholder="Enter a title for your image">
+                </div>
 
-        <div class="bottom-links">
-            <a href="gallery">View Gallery</a> |
-            <a href="<?= $isLoggedIn ? 'profile' : 'home' ?>">
-                <?= $isLoggedIn ? 'Profile' : 'Home' ?>
-            </a>
+                <div class="form-group">
+                    <label for="image">Select Image</label>
+                    <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.gif" required>
+                    <div class="file-specs">
+                        Maximum size: 5MB<br>
+                        Allowed types: JPG, JPEG, PNG, GIF
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="home" class="back-button">Cancel</a>
+                    <button type="submit" class="upload-button">Upload Image</button>
+                </div>
+            </form>
+
+            <div class="bottom-links">
+                <a href="gallery">View Gallery</a> |
+                <a href="<?= $isLoggedIn ? 'profile' : 'home' ?>">
+                    <?= $isLoggedIn ? 'Profile' : 'Home' ?>
+                </a>
+            </div>
         </div>
     </div>
 </body>
