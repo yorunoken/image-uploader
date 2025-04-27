@@ -1,42 +1,44 @@
 .container {
     max-width: 600px;
-    margin: 0 auto;
-    padding: 10px;
-    border: 1px solid #333;
+    margin: 30px auto;
+    padding: 20px;
+    border: 3px solid #444;
     background-color: #1e1e1e;
-}
-
-.logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.logo img {
-    width: 100px;
-    height: 100px;
-    filter: brightness(0) invert(1);
+    box-shadow: 5px 5px 0px #111;
 }
 
 .description {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    border-left: 4px solid #333;
+    padding-left: 10px;
 }
 
 .button-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
 .button {
-    padding: 5px 10px;
-    border: 1px solid #555;
+    padding: 8px 12px;
+    border: 2px solid #3c3c3c;
     background-color: #2c2c2c;
-    color: #e0e0e0;
+    color: #5bde5b;
     cursor: pointer;
     text-align: left;
     text-decoration: none;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    transition: all 0.2s;
 }
 
 .button:hover {
     background-color: #3a3a3a;
+    box-shadow: 2px 2px 0 #111;
+}
+
+.button:active {
+    transform: translate(0, 0);
+    box-shadow: none;
 }
