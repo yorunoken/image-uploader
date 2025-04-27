@@ -83,15 +83,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["image"])) {
             </div>
 
             <div class="form-actions">
-                <a href="<?= $isLoggedIn ? 'dashboard' : 'home' ?>" class="back-button">Cancel</a>
+                <a href="home" class="back-button">Cancel</a>
                 <button type="submit" class="upload-button">Upload Image</button>
             </div>
         </form>
 
         <div class="bottom-links">
             <a href="gallery">View Gallery</a> |
-            <a href="<?= $isLoggedIn ? 'dashboard' : 'home' ?>">
-                <?= $isLoggedIn ? 'Dashboard' : 'Home' ?>
+            <a href="<?= $isLoggedIn ? 'profile' : 'home' ?>">
+                <?= $isLoggedIn ? 'Profile' : 'Home' ?>
             </a>
         </div>
     </div>
