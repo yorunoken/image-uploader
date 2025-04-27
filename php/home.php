@@ -3,6 +3,8 @@ session_start();
 include "./database/utils.php";
 
 $isLoggedIn = loginTokenIsValid(isset($_SESSION["login_token"]) ? $_SESSION["login_token"] : "");
+
+$recentImages = getImages(2);
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +55,30 @@ $isLoggedIn = loginTokenIsValid(isset($_SESSION["login_token"]) ? $_SESSION["log
                 <a class="button" href="logout">Logout</a>
             </div>
         </div>
+
+        <?php if (!empty($recentImages)): ?>
+            <div class="recent-uploads">
+                <h2>Recently Uploaded</h2>
+                <div class="gallery-grid">
+                    <?php foreach ($recentImages as $imageData):
+                        $imageId = $imageData["id"];
+                        $imagePath = "images/$imageId." . $imageData["originalName"];
+                        $imageName = htmlspecialchars($imageData["fileTitle"]);
+                        $imageUrl = "gallery?id=$imageId";
+                    ?>
+                        <div class="gallery-item">
+                            <a href="<?= $imageUrl ?>">
+                                <img src="<?= $imagePath ?>" alt="<?= $imageName ?>" class="gallery-image" />
+                                <div class="overlay">
+                                    <p class="image-title"><?= $imageName ?></p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <a href="gallery" class="view-all">View All Images →</a>
+            </div>
+        <?php endif; ?>
     </div>
 </body>
 

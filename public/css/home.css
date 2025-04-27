@@ -1,10 +1,12 @@
 .container {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 15px;
     border: 3px solid #444;
     background-color: #1e1e1e;
     box-shadow: 5px 5px 0px #111;
+    width: 100%;
+    overflow: hidden;
 }
 
 .description {
@@ -14,6 +16,39 @@
     padding-left: 10px;
 }
 
+.recent-uploads {
+    margin-top: 30px;
+}
+
+.recent-uploads h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #5bde5b;
+}
+
+.view-all {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.recent-uploads .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+}
+
+.recent-uploads .gallery-item {
+    width: 100%;
+    max-width: 100%;
+}
+
+.recent-uploads .gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
 .button-group {
     display: flex;
     flex-direction: column;
@@ -21,7 +56,7 @@
 }
 
 .button {
-    padding: 8px 12px;
+    padding: 12px;
     border: 2px solid #3c3c3c;
     background-color: #2c2c2c;
     color: #5bde5b;
@@ -41,4 +76,24 @@
 .button:active {
     transform: translate(0, 0);
     box-shadow: none;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .button {
+        padding: 15px 12px;
+        font-size: 16px;
+    }
+
+    .description {
+        font-size: 15px;
+    }
+
+    .recent-uploads .gallery-grid {
+        gap: 10px;
+    }
 }

@@ -109,13 +109,17 @@ function uploadImage(string $originalName, string $fileTitle, $userId, $tempName
     );
 }
 
-function getImages()
+function getImages(string | null $limit = null)
 {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT id, title, original_name, user_id, upload_date, views FROM images WHERE is_public = TRUE");
+    $stmt = $conn->prepare("SELECT id, title, original_name, user_id, upload_date, views FROM images WHERE is_public = TRUE ORDER BY upload_date DESC" . ($limit ? " LIMIT ?" : ""));
     if (!$stmt) {
         throw new Error("Problem preparing statement.");
+    }
+
+    if ($limit) {
+        $stmt->bind_param("s", $limit);
     }
 
     $stmt->execute();
