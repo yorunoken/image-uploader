@@ -23,17 +23,17 @@
         if (file_exists("./public/$imagePath")) {
     ?>
             <a href="gallery" class="back-button">Back to Gallery</a>
-            <h1>Image Details</h1>
             <div class="image-wrapper">
-                <img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($imageData['originalName']); ?>" class="image-detail" />
+                <img src="<?= $imagePath; ?>" alt="<?= htmlspecialchars($imageData['originalName']); ?>" class="image-detail" />
             </div>
 
 
             <div class="details">
-                <p><strong>Original Name:</strong> <?php echo htmlspecialchars($imageData['originalName']); ?></p>
-                <p><strong>Uploaded by User ID:</strong> <?php echo htmlspecialchars($imageData['userId']); ?></p>
-                <p><strong>Upload Date:</strong> <?php echo htmlspecialchars($imageData['uploadDate']); ?></p>
-                <p><strong>Views:</strong> <?php echo htmlspecialchars($imageData['views']); ?></p>
+                <p><strong>Media Title:</strong> <?= htmlspecialchars($imageData["fileTitle"]); ?></p>
+                <p><strong>File Name:</strong> <?= htmlspecialchars($imageData["originalName"]); ?></p>
+                <p><strong>Uploaded by User ID:</strong> <?= htmlspecialchars($imageData["userId"]); ?></p>
+                <p><strong>Upload Date:</strong> <?= date("M d, Y", strtotime($imageData["uploadDate"])) ?></p>
+                <p><strong>Views:</strong> <?= htmlspecialchars($imageData["views"]); ?></p>
             </div>
             <?php
         } else {
