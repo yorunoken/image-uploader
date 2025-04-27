@@ -4,6 +4,7 @@
 # Ignore dotenv files (contain secrets)
 .env
 .env.*
+!.env.example
 
 # Ignore PHPStorm and VSCode settings
 .idea/
