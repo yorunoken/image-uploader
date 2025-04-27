@@ -1,10 +1,11 @@
 .container {
-    max-width: 400px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
     border: 3px solid #444;
     background-color: #1e1e1e;
     box-shadow: 5px 5px 0px #111;
+    width: 100%;
 }
 
 .message {
@@ -14,11 +15,15 @@
     border: 2px solid #555;
     color: #ff6b6b;
     font-family: "Courier New", monospace;
+    word-wrap: break-word;
 }
 
 .bottom {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
 }
 
 input[type="text"],
@@ -29,6 +34,7 @@ input[type="password"] {
     color: #e0e0e0;
     font-family: "Courier New", monospace;
     width: 100%;
+    box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -59,4 +65,19 @@ button:hover {
 button:active {
     transform: translate(0, 0);
     box-shadow: none;
+}
+
+@media (max-width: 480px) {
+    .bottom {
+        flex-direction: column;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 16px;
+    }
 }

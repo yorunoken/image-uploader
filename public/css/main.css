@@ -5,6 +5,7 @@ body {
     font-size: 16px;
     margin: 20px;
     line-height: 1.4;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -14,15 +15,7 @@ h1 {
     color: #5bde5b;
     text-shadow: 2px 2px 0px #113311;
     letter-spacing: 1px;
-}
-
-.container {
-    max-width: 650px;
-    margin: 20px auto;
-    padding: 15px;
-    border: 3px solid #444;
-    background-color: #1e1e1e;
-    box-shadow: 5px 5px 0px #111;
+    word-wrap: break-word;
 }
 
 a {
@@ -34,4 +27,47 @@ a {
 a:hover {
     color: #7fff7f;
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        margin: 5px;
+    }
+
+    .container {
+        padding: 12px;
+        width: 95%;
+    }
+}
+
+@media (hover: none) {
+    a:hover {
+        color: #5bde5b;
+        text-decoration: none;
+    }
+
+    a:active {
+        color: #7fff7f;
+        text-decoration: underline;
+    }
+}
+
+input,
+button,
+textarea,
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
 }

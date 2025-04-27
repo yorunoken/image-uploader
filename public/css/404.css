@@ -3,7 +3,7 @@
 }
 
 .error-container h1 {
-    font-size: 48px;
+    font-size: 36px;
     color: #ffffff;
 }
 
@@ -33,4 +33,19 @@
 
 .button:hover {
     background-color: #3a3a3a;
+}
+
+@media (max-width: 600px) {
+    .error-container h1 {
+        font-size: 28px;
+    }
+
+    .error-container p {
+        font-size: 16px;
+    }
+
+    .button {
+        width: 100%;
+        max-width: 200px;
+    }
 }
