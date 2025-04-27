@@ -146,3 +146,38 @@ function getImages(string | null $limit = null)
 
     return $images;
 }
+
+function getUserImages($userId)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT id, title, original_name, upload_date, views, is_public FROM images WHERE user_id = ? ORDER BY upload_date DESC");
+    if (!$stmt) {
+        throw new Error("Problem preparing statement.");
+    }
+
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 0) {
+        return [];
+    }
+
+    $stmt->bind_result($id, $fileTitle, $originalName, $uploadDate, $views, $isPublic);
+
+    $images = array();
+
+    while ($stmt->fetch()) {
+        $images[] = array(
+            "id" => (int)$id,
+            "fileTitle" => (string)$fileTitle,
+            "originalName" => (string)$originalName,
+            "uploadDate" => (string)$uploadDate,
+            "views" => (int)$views,
+            "isPublic" => (bool)$isPublic
+        );
+    }
+
+    return $images;
+}
