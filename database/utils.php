@@ -1,32 +1,13 @@
 <?php
 include "./database/db_connect.php";
 
-// class Image
-// {
-//     public int $id;
-//     public string $fileName;
-//     public string $originalFileName;
-//     public int $userId;
-//     public string $uploadDate;
-//     public int $views;
-
-//     public function __construct($id, $fileName, $userId, $uploadDate, $views)
-//     {
-//         $this->id = $id;
-//         $this->fileName = $fileName;
-//         $this->userId = $userId;
-//         $this->uploadDate = $uploadDate;
-//         $this->views = $views;
-//     }
-// }
-
 function loginTokenIsValid(string $loginToken): bool
 {
     global $conn;
 
     $stmt = $conn->prepare("SELECT 1 FROM users WHERE login_token = ?");
     if (!$stmt) {
-        throw new Error("Problem prepareing statement.");
+        throw new Error("Problem preparing statement.");
     }
 
     $stmt->bind_param("s", $loginToken);
@@ -39,13 +20,37 @@ function loginTokenIsValid(string $loginToken): bool
     return $loggedIn;
 }
 
+function getUserFromLoginToken(string $loginToken)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT id, username FROM users WHERE login_token = ?");
+    if (!$stmt) {
+        throw new Error("Problem preparing statement");
+    }
+
+    $stmt->bind_param("s", $loginToken);
+    $stmt->execute();
+    $stmt->store_result();
+
+    $stmt->bind_result($userId, $username);
+    $stmt->fetch();
+
+    $user = array(
+        "id" => (int)$userId,
+        "username" => (string)$username
+    );
+
+    return $user;
+}
+
 function getImage(int $imageId)
 {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT id, file_name, original_name, user_id, upload_date, views FROM images WHERE id = ? AND is_public = TRUE");
+    $stmt = $conn->prepare("SELECT id, title, original_name, user_id, upload_date, views FROM images WHERE id = ? AND is_public = TRUE");
     if (!$stmt) {
-        throw new Error("Problem prepareing statement.");
+        throw new Error("Problem preparing statement.");
     }
 
     $stmt->bind_param("i", $imageId);
@@ -56,12 +61,12 @@ function getImage(int $imageId)
         throw new Error("The image with that ID couldn't be found.");
     }
 
-    $stmt->bind_result($id, $fileName, $originalName, $userId, $uploadDate, $views);
+    $stmt->bind_result($id, $fileTitle, $originalName, $userId, $uploadDate, $views);
     $stmt->fetch();
 
     $imageData = array(
         "id" => (int)$id,
-        "fileName" => (string)$fileName,
+        "fileTitle" => (string)$fileTitle,
         "originalName" => (string)$originalName,
         "userId" => (int)$userId,
         "uploadDate" => (string)$uploadDate,
@@ -70,11 +75,45 @@ function getImage(int $imageId)
     return $imageData;
 }
 
+function uploadImage(string $originalName, string $fileTitle, $userId, $tempName)
+{
+    global $conn;
+
+    $message = "";
+    $messageType = "";
+
+    $stmt = $conn->prepare("INSERT INTO images (title, original_name, user_id) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $fileTitle, $originalName, $userId);
+
+    if ($stmt->execute()) {
+        $imageId = $conn->insert_id;
+        $targetPath = "./public/images/$imageId.$originalName";
+
+        if (move_uploaded_file($tempName, $targetPath)) {
+            $message = "Image uploaded successfully!";
+            $messageType = "success";
+        } else {
+            $message = "Failed to save the uploaded file.";
+            $messageType = "error";
+        }
+    } else {
+        $message = "Database error. Please try again later.";
+        $messageType = "error";
+    }
+
+    $stmt->close();
+
+    return array(
+        "message" => $message,
+        "messagetype" => $messageType
+    );
+}
+
 function getImages()
 {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT id, file_name, original_name, user_id, upload_date, views FROM images WHERE is_public = TRUE");
+    $stmt = $conn->prepare("SELECT id, title, original_name, user_id, upload_date, views FROM images WHERE is_public = TRUE");
     if (!$stmt) {
         throw new Error("Problem preparing statement.");
     }
@@ -83,17 +122,17 @@ function getImages()
     $stmt->store_result();
 
     if ($stmt->num_rows === 0) {
-        throw new Error("No public images found.");
+        return [];
     }
 
-    $stmt->bind_result($id, $fileName, $originalName, $userId, $uploadDate, $views);
+    $stmt->bind_result($id, $fileTitle, $originalName, $userId, $uploadDate, $views);
 
     $images = array();
 
     while ($stmt->fetch()) {
         $images[] = array(
             "id" => (int)$id,
-            "fileName" => (string)$fileName,
+            "fileTitle" => (string)$fileTitle,
             "originalName" => (string)$originalName,
             "userId" => (int)$userId,
             "uploadDate" => (string)$uploadDate,

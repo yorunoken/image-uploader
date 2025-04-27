@@ -1,0 +1,119 @@
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    border: 3px solid #444;
+    background-color: #1e1e1e;
+    box-shadow: 5px 5px 0px #111;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #555;
+    font-family: "Courier New", monospace;
+}
+
+.message.error {
+    color: #ff6b6b;
+    background-color: #2c2c2c;
+    border-color: #ff6b6b;
+}
+
+.message.success {
+    color: #5bde5b;
+    background-color: #2c2c2c;
+    border-color: #5bde5b;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #5bde5b;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #555;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    font-family: "Courier New", monospace;
+}
+
+input[type="file"] {
+    display: block;
+    margin-top: 5px;
+    padding: 10px;
+    border: 2px solid #555;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    width: 100%;
+    font-family: "Courier New", monospace;
+}
+
+.file-specs {
+    font-size: 14px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.back-button,
+.upload-button {
+    padding: 10px 20px;
+    border: 2px solid #444;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.back-button {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+.upload-button {
+    background-color: #2c2c2c;
+    color: #5bde5b;
+    border-color: #444;
+}
+
+.back-button:hover,
+.upload-button:hover {
+    background-color: #3a3a3a;
+    box-shadow: 2px 2px 0 #111;
+}
+
+.back-button:active,
+.upload-button:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+.bottom-links {
+    margin-top: 25px;
+    text-align: center;
+    font-family: "Courier New", monospace;
+}
+
+.bottom-links a {
+    color: #5bde5b;
+    text-decoration: none;
+}
+
+.bottom-links a:hover {
+    text-decoration: underline;
+}
